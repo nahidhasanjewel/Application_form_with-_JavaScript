@@ -1,5 +1,3 @@
-//var emailAPIBaseURL='https://www.bcause-api.com/';
-//var emailAPIBaseURL = 'http://localhost:58579/';
 var reqData={};
 function SendEmailRequest(model, endpoint) {
   let xhr = new XMLHttpRequest();
@@ -22,7 +20,7 @@ function SendEmailRequest(model, endpoint) {
   };
 
   xhr.send(formdata);
-  // closeSendingModal();
+
 }
 
 function clearForm() {
@@ -47,26 +45,7 @@ function countChars(countfrom,displayto) {
   var len = document.getElementById(countfrom).value.length;
   document.getElementById(displayto).innerHTML = len;
 }
-// function countChars(countfrom,displayto) {
-//   var len = document.getElementById(countfrom).value.length;
-//   document.getElementById(displayto).innerHTML = len;
-// }
 
-// --------- Inquery Page Validation ----------//
-// function isEmpty(element){
-//   if(element.vlaue === ''){
-//     element.classList.add('is-invalid');
-//     element.nextSibling.innerText = 'Please fill this filed'
-//     element.nextSibling.classList.add('invalid-feedback');
-//     // return true;
-//   }else{
-//     element.classList.remove('is-invalid');
-//     element.nextSibling.classList.remove('invalid-feedback');
-//     // return false
-//   }
-
-//   return true;
-// }
 
 function checkMaxLength(element, len){
   if(element.value.length > len){
@@ -85,12 +64,10 @@ function checkMaxLength(element, len){
 function checkMaxLength1(element, len){
   if(element.value.length > len){
     element.classList.add('is-invalid')
-    // element.nextElementSibling.innerText = 'Not more than 400 character'
      element.nextElementSibling.classList.add('invalid-feedback')
     return true;
   }else{
     element.classList.remove('is-invalid')
-    // element.nextElementSibling.classList.remove('invalid-feedback')
      element.nextElementSibling.innerText = ''
     return false;
   }
@@ -99,19 +76,7 @@ function checkMaxLength1(element, len){
 
 function inqueryFormValidation(){
   let result = true;
-  // const email = document.querySelector("#email")
-  // const personInCharge = document.querySelector("#personInCharge")
-  // const phone = document.querySelector("#phone")
-  //const txtAreaBusiness = document.querySelector("#txtAreaBusiness")
- //const txtAreaCompany = document.querySelector("#txtAreaCompany")
   const textMessage = document.querySelector("#textMessage")
-  // if(isEmpty(email) == false && isEmpty(personInCharge) == false && isEmpty(phone) == false && isEmpty(textMessage) == false){
-  //   return true;
-  // }
-
- 
-
- 
   if(checkMaxLength(textMessage, 400)){
     result = false; // invalid
   }
