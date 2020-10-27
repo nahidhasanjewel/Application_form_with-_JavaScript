@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Simple JS form</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="style.css">
+  <script src="jf.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+
+</head>
+<body onload="onBodyLoad()">
+
+  <div class="container">
+    <!-- main-content start -->
+    <section class="main-content pt-2">
+      <div class="container">
+        <div class="page-wrapper">
+          <div class="site-heading-left">
+            <h2>Application form</h2>
+          </div>        
+  
+          <div class="container page-border mb-4">
+            <div class="registration-form">
+              <p class="text-right mb-0"><span class="text-red">※</span> Is a required item</p>
+              
+              <div class="reg-form-top mb-4">
+                <p class="mb-1"><span class="text-red">※</span> Membership type</p>
+                <div>
+                  <div class="form-check-inline mb-2">
+                    <label class="form-check-label">
+                      <input type="checkbox" id="chkMembership_1"  class="form-check-input" value="Regular member ">Regular member (corporation)
+                    </label>
+                  </div>
+                  <div class="form-check-inline mb-2">
+                    <label class="form-check-label">
+                      <input type="checkbox" id="chkMembership_2" class="form-check-input" value="Regular member ">Regular member (individual)
+                    </label>
+                  </div>
+                  <div class="form-check-inline mb-2">
+                    <label class="form-check-label">
+                      <input type="checkbox" id="chkMembership_3" class="form-check-input" value="Special sponsor ">Special sponsor application
+                    </label>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p><span class="text-red">※</span>Email</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-8 pLR5">
+                  <input name="emailAddress" type="email" id="txtEmail" class="form-control" placeholder="mail address">
+                </div>
+                <div class="col-lg-6 col-md-9 offset-md-3 offset-lg-0 pLR5"></div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p><span class="text-red">※</span> Email (re-enter)</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-8 pLR5">
+                  <input onblur="ValidateEmail()" name="emailAddress2" type="email" id="txtEmailReEnter" class="form-control" placeholder="mail address">
+                </div>
+                <div class="col-lg-6 col-md-9 offset-md-3 offset-lg-0 pLR5">
+                  <span style="display:none ;" id="lblMsgEmailNotMatch" class="example text-red">※Email addresses do not match</span>
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Company name</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-8 pLR5">
+                  <input type="text" id="txtCompanyName" class="form-control" placeholder="Example) B-cause Inc.">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Department name</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-8 pLR5">
+                  <input type="text" id="txtDepartmentName" class="form-control" placeholder="Example) Translation">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Job title</p>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-7 pLR5">
+                  <input type="text"id="txtJobTitle"  class="form-control" placeholder="Example) Manager">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p><span class="text-red">※</span>Person in charge name</p>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-7 pLR5">
+                  <input type="text" id="txtContactName" class="form-control" placeholder="Example: Taro Yamada">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p><span class="text-red">※</span>phone number</p>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-7 pLR5">
+                  <input type="text" id="txtPhoneNumber"  class="form-control" placeholder="Example,03-5733-4264">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Postal code</p>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-5 pLR5">
+                  <input type="text" id="txtPostalCode"  class="form-control" placeholder="Example,105-0013">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 col-2 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Street address</p>
+                  </div>
+                </div>
+                <div class="col-md-9 col-10 pLR5">
+                  <div class="form-check pt-2">
+                    <label class="form-check-label">
+                      <input type="checkbox" onclick="switchCheckbox(0)"  id="chkStreetAddress" class="form-check-input" value="">Domestic
+                    </label>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 col-2 pLR5">
+                  <div class="reg-label">
+                    <p class="text-right">(Prefecture name)</p>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-5 col-5 pLR5">
+                  <div class="form-group">
+                    <select class="form-control" id="selPrefecture">
+                        <option>Dhaka</option>
+                        <option>Brasal</option>
+                        <option>Rajshahi</option>
+                        <option>Khulna</option>
+                        <option>Rangpur</option>
+                        <option>Comilla</option>
+                      
+                        
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-4 col-5 pLR5">
+                  <span class="example"></span>
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 col-2 pLR5">
+                  <div class="reg-label">
+                    <p class="text-right">(Ward / city name)</p>
+                  </div>                
+                </div>
+                <div class="col-lg-5 col-md-6 col-6 pLR5">
+                  <div class="form-group">
+                    <input type="text" id="txtCityName" class="form-control" placeholder="Example,Dhaka2-1-3">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-4 pLR5">
+                  <input type="text" id="txtBuildingName" class="form-control" placeholder="Building / building name / floor">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 col-2 pLR5"></div>
+                <div class="col-10 col-md-9 col-2 pLR5">
+                  <div class="form-check pt-2">
+                    <label class="form-check-label">
+                      <input type="checkbox" onclick="switchCheckbox(1)" id="chkOverseas" class="form-check-input" value="">overseas
+                    </label>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 col-2 pLR5">
+                  <div class="reg-label">
+                    <p class="text-right">(Country name)</p>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4 pLR5">
+                  <div class="form-group">
+                    <select class="form-control" id="selCountry">
+                        <option>United States</option>
+                        <option>Abkhazia, Republic of</option>
+                        <option>Afghanistan</option>
+                        <option>Albania</option>
+                        <option>Algeria</option>
+                        <option>Andorra</option>
+                        <option>Angola</option>
+                        <option>Antigua and Barbuda</option>
+                    
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xl-1 col-md-2 col-2 text-right">
+                  <span class="example">(State / County)</span>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4 pLR5">
+                  <input type="text" id="txtState" class="form-control" placeholder="State/county">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 col-2 pLR5"></div>
+                <div class="col-lg-5 col-md-5 col-6 col-6  pLR5">
+                  <div class="form-group">
+                    <input type="text" id="txtAddress" class="form-control" placeholder="Address">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-4 pLR5">
+                  <input type="text" id="txtAddressLine1" class="form-control" placeholder="Building/Floor">
+                </div>
+              </div>
+  
+  
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Corporate website</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-8 pLR5">
+                  <input type="text" id="txtWebSiteURL" class="form-control" placeholder="Example,https://www.google.com">
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Representative's name</p>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-7 pLR5">
+                  <input type="text" id="txtCEO" class="form-control" placeholder="Example,Nahid Hasan">
+                </div>
+              </div>            
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Date of establishment</p>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-7 pLR5">
+                  <input type="text" id="txtEstablishmentDate" class="form-control" placeholder="calendar">
+                </div>
+              </div>            
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Capital</p>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-5 pLR5">
+                  <input type="text" id="txtCapital" class="form-control" placeholder="Example,1,000">
+                </div>
+                <div class="col-lg-2 col-md-2 col-3 pLR5">
+                  <div class="form-group" style="max-width: 80px;">
+                    <select class="form-control" id="selCurrency">
+                      <option>BD</option>
+                      <option>EURO</option>
+                    </select>
+                  </div>                
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">number of employees</p>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-5 pLR5">
+                  <input type="text" id="txtNumberOfEmployees" class="form-control" placeholder="Example,50">
+                </div>
+                <div class="col-lg-1 col-md-2 col-4 pLR5">
+                  <span class="example">$</span>               
+                </div>
+              </div>
+  
+              <div class="mb-3">
+                <p class="mb-1"><span class="text-red">※</span> Industry (multiple selections allowed, up to 5)</p>
+                <div class="indestry-check">
+                  <ul>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_1" class="form-check-input" value="Foreign hiring companies">Foreign hiring companies
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_2" class="form-check-input" value="VISA・士業">VISA / Professional
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_3" class="form-check-input" value="Travel / Tourism / Inbound">Travel / Tourism / Inbound
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_4" class="form-check-input" value="Human resources advertising / events">Human resources advertising / events
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_5" class="form-check-input" value="Educational institution">Educational institution
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_6" class="form-check-input" value="Life support">Life support
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_7" class="form-check-input" value="Technical intern training (sending / supervising organization)">Technical intern training (sending / supervising organization)
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_8" class="form-check-input" value="Interpretation and translation">Interpretation and translation
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_9" class="form-check-input" value="Local government">Local government
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_10" class="form-check-input" value="Registration support organization (specific skill)">Registration support organization (specific skill)
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_11" class="form-check-input" value="Real estate / guarantee">Real estate / guarantee
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_12" class="form-check-input" value="Multicultural coexistence">Multicultural coexistence
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_13" class="form-check-input" value="Advanced talent agent">Advanced talent agent
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_14" class="form-check-input" value="Communication / mobile phone">Communication / mobile phone
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_15" class="form-check-input" value="Overseas members">Overseas members
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_16" class="form-check-input" value="Recruitment consulting">Recruitment consulting
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_17" class="form-check-input" value="Financial / overseas remittance">Financial / overseas remittance
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_18" class="form-check-input" value="Support for overseas expansion">Support for overseas expansion
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_19" class="form-check-input" value="Human resource development for foreigners">Human resource development for foreigners
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_20" class="form-check-input" value="Medical / long-term care">Medical / long-term care
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_21" class="form-check-input" value="Support for hiring companies">Support for hiring companies
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_22" class="form-check-input" value="Advertising / distribution">Advertising / distribution
+                        </label>
+                      </div>                    
+                    </li>
+                    <li>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="chk_industry_23" class="form-check-input" value="Other">Other
+                          <input value=""   id="txtOthers"  type="text">
+                        </label>
+                      </div>                    
+                    </li>
+                  </ul>
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Business content</p>
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-9 pLR5">
+                  <textarea name=""  onkeyup="countChars('txtAreaBusiness','charcount');" onkeydown="countChars('txtAreaBusiness','charcount');" onmouseout="countChars('txtAreaBusiness','charcount');"   id="txtAreaBusiness" cols="30" rows="4" class="form-control" placeholder="Please tell us about your business."></textarea>
+                  <span id="charcount">0</span> The entered character.
+                
+                </div>
+                <div class="col-lg-2 col-md-9 offset-md-3 offset-lg-0 pLR5">
+                  <span class="example">Up to 300 characters</span>               
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-3 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Company introduction</p>
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-9 pLR5">
+                  <textarea name="" id="txtAreaCompany"  onkeyup="countChars('txtAreaCompany','charcount1');" onkeydown="countChars('txtAreaCompany','charcount1');" onmouseout="countChars('txtAreaCompany','charcount1');"cols="30" rows="4" class="form-control" placeholder="Company introduction"></textarea>
+                  <span id="charcount1">0</span> Company introduction
+                </div>
+                <div class="col-lg-2 col-md-9 offset-md-3 offset-lg-0 pLR5">
+                  <span class="example">Up to 200 characters</span>               
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-lg-2 col-md-4 col-5 pLR5">
+                  <div class="reg-label">
+                    <p class="paddingSM0">Foreigner acceptance record</p>
+                  </div>
+                </div>
+                <div class="col-lg-1 col-md-2 col-3 pLR5">
+                  <input type="text"  id="txtForeignerRecord" class="form-control" placeholder="">
+                </div>
+                <div class="col-lg-9 col-md-6 col-4 pLR5">
+                  <span class="example mr-2">$</span>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                     <input type="checkbox"  onclick="foreignerRecDisable(this)" id="chkNone"  class="form-check-input" value="">None
+                    </label>
+                  </div>                               
+                </div>
+              </div>            
+  
+              
+  
+              <div class="row mN5 mb-4">
+                <div class="col-sm-12 text-sm-center pLR5">
+                  <div class="reg-label">
+                  </div>
+                </div>
+                <div class="col-sm-12 pLR5">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <span style="color: red;">※</span>Language for receiving messages from the secretariat
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" id="rdoReceiveMsgJP"  class="form-check-input" name="optradio">Receive messages in Japanese
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" id="rdoReceiveMsgEN"  class="form-check-input" name="optradio">Receive messages in english
+                    </label>
+                  </div>       
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-4">
+                <div class="col-sm-12 pLR5">
+                  <div class="statement-text">
+                    <p><strong>■ Statements and commitments regarding non-anti-social forces such as gangsters *</strong></p>
+                    <p>I (our company / our organization) express and promise that I will not be an antisocial force now or in the future.</p>
+                    <p>If this representation / commitment is found to be a false declaration, no objection will be made even if the transaction is suspended or canceled </p>
+                    <p>In addition, we do not seek compensation or compensation, and we express and promise that we (our company / our organization) will be responsible for any damages caused by this.</p>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row mN5 mb-3">
+                <div class="col-sm-12 text-sm-center pLR5">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" id="chkAgree" class="form-check-input" value="">I agree
+                      <p class="paddingSM0" id="agreeText" ><span style="color: red;">※Consent is required.。</span></p>
+                    </label>
+                  </div> 
+                </div>
+              </div>            
+  
+              <div class="row mN5">
+                <div class="col-sm-12 pLR5 text-center">
+                  <button type="button" onclick="SendInquery2Email()" class="btn btn-primary">Submit Form</button>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="advertisement-area mb-5 mt-3">
+          <img src="../assets/img/add.jpg" alt="" class="img-fluid">
+        </div>
+      </div>
+    </section>
+    <!-- main-content end -->
+    
+      <!-- Modal Area START -->
+    <div class="model-overlay"></div>
+    <div class="modal1-area">
+        <div class="title-are">
+          <h2>Do you want to send an application? <span onclick="closeModal()">&times;</span></h2>
+        </div>
+        <div class="control-area">
+          <button onclick="closeModal()" class="btn-modal no">No</button>
+          <button onclick="YesCallback()" class="btn-modal yes">Yes</button>
+      </div>
+    </div>
+    <!-- Modal Area END -->
+    
+    <!-- sending modal START -->
+    <div class="sending-mode-overlay"></div>
+    <div class="sending-modal-content">
+      <p>Loading…</p>
+    </div>
+    <!-- sending modal END -->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+ <!-- <script src="../assets/js/jquery-3.2.1.min.js" ></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+</body>
+</html>
